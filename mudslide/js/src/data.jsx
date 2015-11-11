@@ -1,47 +1,19 @@
 'use strict';
 
-export function handleRain(data, rain) {
-  let output = [];
-  for(let i in rain) {
-    for(let j in data) {
-      if(rain[i].SiteName == data[j].station1StationName || rain[i].SiteName == data[j].station2StationName) {
-        let check = true;
-        for(let k in output) {
-          if(output[k].SiteName == rain[i].SiteName) {
-            check = false;
-          }
+export default function(data, features) {
+  for(let i in data) {
+    if(features.DEBRISNO == data[i].Debrisno || features.OLD == data[i].Debrisno) {
+      if(data[i].County[0] == "台") {
+        let temp = "臺";
+        for(let j  = 1; j < 3; j++) {
+          temp += data[i].County[j];
         }
-
-        if(check) {
-          output.push(rain[i]);
-        }
+        data[i].County = temp;
       }
+
+      return data[i];
     }
   }
 
-  return output;
-}
-
-export function handleLine(data, line) {
-  let temp = [...line.features];
-  line.features.length = 0;
-  for(let i in temp) {
-    for(let j in data) {
-      if(temp[i].properties.DEBRISNO == data[j].Debrisno || temp[i].properties.OLD == data[j].Debrisno) {
-        let check = true;
-        for(let k in line.features) {
-          if(line.features[k].properties.DEBRISNO == temp[i].properties.DEBRISNO) { 
-            check = false;
-          }
-        }
-
-        if(check) {
-          for(let k in data[j]) {
-            temp[i].properties[k] = data[j][k];
-          }
-          line.features.push(temp[i]);
-        }
-      }
-    }
-  }
+  return [];
 }
