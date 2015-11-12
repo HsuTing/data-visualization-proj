@@ -11,6 +11,7 @@ import {
   init as Init,
   setPlace as Set,
   resetView as Reset,
+  info as Info
 } from './map';
 
 import Site from './site';
@@ -30,4 +31,5 @@ import Line from './line';
 
   $("#reset").click(function() { Reset(map); });
   $("#set").click(function() { Set(map); });
+  $("#info").click(function() { Info(); });
 })();

@@ -40,7 +40,7 @@ module.exports = {
     },
 */
     resolve: {
-        extensions: ['', '.js', '.jsx', '.css', '.min.css', '.min.js', '.json']
+        extensions: ['', '.js', '.jsx', '.css', '.min.css', '.min.js', '.json', '.html']
     },
     //plugins: [commonsPlugin, minifyPlugin]
     plugins: [

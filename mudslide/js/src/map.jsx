@@ -1,5 +1,6 @@
 'use strict';
 
+import $ from 'jquery';
 import L from 'leaflet';
 
 export function init(map) {
@@ -25,3 +26,21 @@ export function setPlace(map) {
 export function resetView(map) {
   map.setView(new L.LatLng(23.619, 120.795), 8);
 };
+
+export function info() {
+  $('#show').css({
+    position: 'fixed',
+    top: '0px',
+    left: '0px',
+    zIndex: 10
+  });
+  $('#show').show();
+
+  let html = require('html!./info');
+  $('#show').html(html);
+
+  $('#close').click(function() {
+    $('#show').hide();
+    $('#show').html('');
+  });
+}
